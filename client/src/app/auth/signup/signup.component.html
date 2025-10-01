@@ -1,0 +1,155 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-6xl">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Sign Up</h2>
+
+    <!-- Error Alert -->
+    <div *ngIf="errorMessage" class="mb-3 p-3 rounded bg-red-100 text-red-800 border border-red-300">
+      {{ errorMessage }}
+    </div>
+
+
+    <form (ngSubmit)="onSubmit()" #signupForm="ngForm" class="space-y-4">
+
+      <!-- Personal Information -->
+      <div class="relative my-6">
+        <hr class="border-t border-gray-300" />
+        <span class="absolute left-1/2 -translate-x-1/2 -top-3 bg-white px-3 text-gray-500 text-bold">
+          Personal Information
+        </span>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <input type="text" placeholder="First Name" [(ngModel)]="first_name" name="first_name" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+
+        <div>
+          <input type="text" placeholder="Middle Name" [(ngModel)]="middle_name" name="middle_name" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+
+        <div>
+          <input type="text" placeholder="Last Name" [(ngModel)]="last_name" name="last_name" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+
+        <div>
+          <input type="text" placeholder="Suffix" [(ngModel)]="suffix" name="suffix" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+      </div>
+
+      <!-- Permanent Address -->
+      <div class="relative my-6">
+        <hr class="border-t border-gray-300" />
+        <span class="absolute left-1/2 -translate-x-1/2 -top-3 bg-white px-3 text-gray-500 text-bold">
+          Permanent Address
+        </span>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <input type="text" placeholder="Blk no / Room no" [(ngModel)]="blk_no_or_room_no" name="blk_no_or_room_no"
+            required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+        <div>
+          <input type="text" placeholder="Building" [(ngModel)]="building" name="building" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+        <div>
+          <input type="text" placeholder="Street" [(ngModel)]="street" name="street" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+        <div>
+          <input type="text" placeholder="Barangay" [(ngModel)]="barangay" name="barangay" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+        <div>
+          <input type="text" placeholder="Province" [(ngModel)]="province" name="province" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+        <div>
+          <input type="text" placeholder="Zip Code" [(ngModel)]="zip_code" name="zip_code" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+      </div>
+
+      <!-- Personal Contact -->
+      <div class="relative my-6">
+        <hr class="border-t border-gray-300" />
+        <span class="absolute left-1/2 -translate-x-1/2 -top-3 bg-white px-3 text-gray-500 text-bold">
+          Personal Contact
+        </span>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <input type="text" placeholder="Contact No." [(ngModel)]="contact_no" name="contact_no" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+        <div>
+          <input type="text" placeholder="Tel No." [(ngModel)]="tel_no" name="tel_no" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+        <div>
+          <input type="email" placeholder="Email Address" [(ngModel)]="email_address" name="email_address" required
+            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
+        </div>
+      </div>
+
+      <!-- Valid ID -->
+      <div class="relative my-6">
+        <hr class="border-t border-gray-300" />
+        <span class="absolute left-1/2 -translate-x-1/2 -top-3 bg-white px-3 text-gray-500 text-bold">
+          Valid ID
+        </span>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4">
+        <div>
+          <select [(ngModel)]="selectedId" name="valid_id_type" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 text-gray-700">
+            <option value="" disabled>Select Valid ID</option>
+            <option value="passport">Philippine Passport</option>
+            <option value="driver_license">Driver’s License</option>
+            <option value="umid">UMID (Unified Multi-Purpose ID)</option>
+            <option value="sss">SSS ID</option>
+            <option value="gsis">GSIS ID</option>
+            <option value="prc">PRC ID</option>
+            <option value="voter">Voter’s ID</option>
+            <option value="postal">Postal ID</option>
+            <option value="national_id">PhilSys National ID</option>
+            <option value="tin">TIN (Tax Identification Number)</option>
+          </select>
+        </div>
+
+        <div>
+          <input type="text" [(ngModel)]="id_no" name="valid_id_number" [placeholder]="placeholderText"
+            [disabled]="!selectedId" [pattern]="selectedPattern" #idNumberRef="ngModel" required
+            class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+            focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed" />
+          <p *ngIf="idNumberRef.invalid && idNumberRef.touched" class="text-red-500 text-sm mt-1">
+            Invalid format. Please follow: {{ placeholderText }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="grid grid-cols-4">
+        <div class="col-span-4">
+          <button type="submit" class="w-50 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <p class="mt-6 text-center text-sm text-gray-600">
+      Already have an account?
+      <a routerLink="/signin" class="text-blue-600 hover:underline">Sign In</a>
+    </p>
+  </div>
+</div>
