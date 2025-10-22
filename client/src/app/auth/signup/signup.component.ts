@@ -13,34 +13,34 @@ import Swal from 'sweetalert2';
 })
 export class SignupComponent {
   // Personal Info
-  first_name: string = '';
-  middle_name: string = '';
-  last_name: string = '';
+  firstname: string = '';
+  middlename: string = '';
+  lastname: string = '';
   suffix: string = '';
 
   // Address Info
-  blk_no_or_room_no: string = '';
+  blkRoom: string = '';
   building: string = '';
   street: string = '';
   barangay: string = '';
   province: string = '';
-  zip_code: string = '';
+  zipCode: string = '';
 
   // Contact Info
-  contact_no: string = '';
-  tel_no: string = '';
-  email_address: string = '';
+  contactNo: string = '';
+  telNo: string = '';
+  email: string = '';
 
   // ID Info
-  selectedId: string = '';
-  id_no: string = '';
+  validIdType: string = '';
+  validIdNumber: string = '';
 
-  // Error message (plain text display)
+  // Error message
   errorMessage: string = '';
 
   constructor(private http: HttpClient) { }
 
-  // Map each ID to its placeholder
+  // Placeholders for each ID
   idPlaceholders: { [key: string]: string } = {
     passport: 'e.g. P1234567A',
     driver_license: 'e.g. N01-23-456789',
@@ -51,10 +51,10 @@ export class SignupComponent {
     voter: 'e.g. 1234-5678-9012-3456',
     postal: 'e.g. 1234-5678-9012',
     national_id: 'e.g. 1234-5678-9012-3456',
-    tin: 'e.g. 123-456-789',
+    tin: 'e.g. 123-456-789'
   };
 
-  // Regex patterns for each ID type
+  // Regex validation patterns
   idPatterns: { [key: string]: string } = {
     passport: '^[A-Z][0-9]{7}[A-Z]$',
     driver_license: '^[A-Z0-9-]{5,15}$',
@@ -65,71 +65,73 @@ export class SignupComponent {
     voter: '^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$',
     postal: '^[0-9]{4}-[0-9]{4}-[0-9]{4}$',
     national_id: '^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$',
-    tin: '^[0-9]{3}-[0-9]{3}-[0-9]{3}$',
+    tin: '^[0-9]{3}-[0-9]{3}-[0-9]{3}$'
   };
 
   get selectedPattern(): string {
-    return this.selectedId ? this.idPatterns[this.selectedId] : '';
+    return this.validIdType ? this.idPatterns[this.validIdType] : '';
   }
 
   get placeholderText(): string {
-    return this.selectedId
-      ? this.idPlaceholders[this.selectedId]
+    return this.validIdType
+      ? this.idPlaceholders[this.validIdType]
       : 'Select an ID first';
   }
 
-  // Submit method with validation
+  // Submit method
   onSubmit() {
     this.errorMessage = '';
 
     // Validate required fields
-    if (!this.first_name.trim() || !this.last_name.trim() ||
+    if (
+      !this.firstname.trim() || !this.lastname.trim() ||
       !this.barangay.trim() || !this.province.trim() ||
-      !this.zip_code.trim() || !this.contact_no.trim() ||
-      !this.email_address.trim() || !this.selectedId ||
-      !this.id_no.trim()) {
+      !this.zipCode.trim() || !this.contactNo.trim() ||
+      !this.email.trim() || !this.validIdType ||
+      !this.validIdNumber.trim()
+    ) {
       this.errorMessage = 'Please fill up all required fields.';
       return;
     }
 
     // Validate ID format
     const pattern = new RegExp(this.selectedPattern);
-    if (!pattern.test(this.id_no)) {
-      this.errorMessage = `Your ${this.selectedId.replace('_', ' ')} must follow this format: ${this.placeholderText}`;
+    if (!pattern.test(this.validIdNumber)) {
+      this.errorMessage = `Your ${this.validIdType.replace('_', ' ')} must follow this format: ${this.placeholderText}`;
       return;
     }
 
-    // Payload
+    // Payload (same keys as User.java)
     const payload = {
-      firstname: this.first_name,
-      middlename: this.middle_name,
-      lastname: this.last_name,
+      firstname: this.firstname,
+      middlename: this.middlename,
+      lastname: this.lastname,
       suffix: this.suffix,
-      blk_room: this.blk_no_or_room_no,
+      blkRoom: this.blkRoom,
       building: this.building,
       street: this.street,
       barangay: this.barangay,
       province: this.province,
-      zip_code: this.zip_code,
-      contact_no: this.contact_no,
-      tel_no: this.tel_no,
-      email: this.email_address,
-      valid_id_type: this.selectedId,
-      valid_id_number: this.id_no
+      zipCode: this.zipCode,
+      contactNo: this.contactNo,
+      telNo: this.telNo,
+      email: this.email,
+      validIdType: this.validIdType,
+      validIdNumber: this.validIdNumber
     };
 
-    // API call
-    this.http.post('http://localhost:8080/api/v3/users', payload).subscribe({
+    // Call backend API
+    this.http.post('http://localhost:8080/api/v3/users/signup', payload).subscribe({
       next: () => {
         this.resetForm();
         Swal.fire({
           toast: true,
-          position: 'top-end',
           icon: 'success',
           title: 'Registration successful!',
+          position: 'top-end',
           showConfirmButton: false,
           timer: 3000,
-          timerProgressBar: true
+          timerProgressBar: true,
         });
       },
       error: (err) => {
@@ -148,20 +150,20 @@ export class SignupComponent {
   }
 
   private resetForm() {
-    this.first_name = '';
-    this.middle_name = '';
-    this.last_name = '';
+    this.firstname = '';
+    this.middlename = '';
+    this.lastname = '';
     this.suffix = '';
-    this.blk_no_or_room_no = '';
+    this.blkRoom = '';
     this.building = '';
     this.street = '';
     this.barangay = '';
     this.province = '';
-    this.zip_code = '';
-    this.contact_no = '';
-    this.tel_no = '';
-    this.email_address = '';
-    this.selectedId = '';
-    this.id_no = '';
+    this.zipCode = '';
+    this.contactNo = '';
+    this.telNo = '';
+    this.email = '';
+    this.validIdType = '';
+    this.validIdNumber = '';
   }
 }

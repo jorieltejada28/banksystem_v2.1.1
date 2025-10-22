@@ -10,28 +10,41 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // Personal Info
     private String firstname;
     private String lastname;
     private String middlename;
     private String suffix;
 
-    private String blk_room;
+    // Address Info
+    @Column(name = "blk_room")
+    private String blkRoom;
+
     private String building;
     private String street;
     private String barangay;
     private String province;
-    private String zip_code;
-    private String contact_no;
-    private String tel_no;
+
+    @Column(name = "zip_code")
+    private String zipCode;
+
+    // Contact Info
+    @Column(name = "contact_no")
+    private String contactNo;
+
+    @Column(name = "tel_no")
+    private String telNo;
+
     private String email;
 
-    private String valid_id_number;
-    private String valid_id_type;
+    // ID Info
+    @Column(name = "valid_id_type")
+    private String validIdType;
 
-    private String account_number;
-    private String tin_number;
+    @Column(name = "valid_id_number")
+    private String validIdNumber;
 
-    // Getters and Setters
+    // --- Getters and Setters ---
     public Long getId() {
         return id;
     }
@@ -72,12 +85,12 @@ public class User {
         this.suffix = suffix;
     }
 
-    public String getBlk_room() {
-        return blk_room;
+    public String getBlkRoom() {
+        return blkRoom;
     }
 
-    public void setBlk_room(String blk_room) {
-        this.blk_room = blk_room;
+    public void setBlkRoom(String blkRoom) {
+        this.blkRoom = blkRoom;
     }
 
     public String getBuilding() {
@@ -112,28 +125,28 @@ public class User {
         this.province = province;
     }
 
-    public String getZip_code() {
-        return zip_code;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZip_code(String zip_code) {
-        this.zip_code = zip_code;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public String getContact_no() {
-        return contact_no;
+    public String getContactNo() {
+        return contactNo;
     }
 
-    public void setContact_no(String contact_no) {
-        this.contact_no = contact_no;
+    public void setContactNo(String contactNo) {
+        this.contactNo = contactNo;
     }
 
-    public String getTel_no() {
-        return tel_no;
+    public String getTelNo() {
+        return telNo;
     }
 
-    public void setTel_no(String tel_no) {
-        this.tel_no = tel_no;
+    public void setTelNo(String telNo) {
+        this.telNo = telNo;
     }
 
     public String getEmail() {
@@ -144,35 +157,19 @@ public class User {
         this.email = email;
     }
 
-    public String getValid_id_number() {
-        return valid_id_number;
+    public String getValidIdType() {
+        return validIdType;
     }
 
-    public void setValid_id_number(String valid_id_number) {
-        this.valid_id_number = valid_id_number;
+    public void setValidIdType(String validIdType) {
+        this.validIdType = validIdType;
     }
 
-    public String getValid_id_type() {
-        return valid_id_type;
+    public String getValidIdNumber() {
+        return validIdNumber;
     }
 
-    public void setValid_id_type(String valid_id_type) {
-        this.valid_id_type = valid_id_type;
-    }
-
-    public String getAccount_number() {
-        return account_number;
-    }
-
-    public void setAccount_number(String account_number) {
-        this.account_number = account_number;
-    }
-
-    public String getTin_number() {
-        return tin_number;
-    }
-
-    public void setTin_number(String tin_number) {
-        this.tin_number = tin_number;
+    public void setValidIdNumber(String validIdNumber) {
+        this.validIdNumber = validIdNumber;
     }
 }

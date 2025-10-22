@@ -20,17 +20,17 @@
 
       <div class="grid grid-cols-4 gap-4">
         <div>
-          <input type="text" placeholder="First Name" [(ngModel)]="first_name" name="first_name" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+          <input type="text" placeholder="First Name" [(ngModel)]="firstname" name="first_name" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
 
         <div>
-          <input type="text" placeholder="Middle Name" [(ngModel)]="middle_name" name="middle_name" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+          <input type="text" placeholder="Middle Name" [(ngModel)]="middlename" name="middle_name" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
 
         <div>
-          <input type="text" placeholder="Last Name" [(ngModel)]="last_name" name="last_name" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+          <input type="text" placeholder="Last Name" [(ngModel)]="lastname" name="last_name" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
 
@@ -50,7 +50,7 @@
 
       <div class="grid grid-cols-4 gap-4">
         <div>
-          <input type="text" placeholder="Blk no / Room no" [(ngModel)]="blk_no_or_room_no" name="blk_no_or_room_no"
+          <input type="text" placeholder="Blk no / Room no" [(ngModel)]="blkRoom" name="blk_no_or_room_no"
             required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
@@ -71,7 +71,7 @@
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
         <div>
-          <input type="text" placeholder="Zip Code" [(ngModel)]="zip_code" name="zip_code" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+          <input type="text" placeholder="Zip Code" [(ngModel)]="zipCode" name="zip_code" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
       </div>
@@ -86,15 +86,15 @@
 
       <div class="grid grid-cols-4 gap-4">
         <div>
-          <input type="text" placeholder="Contact No." [(ngModel)]="contact_no" name="contact_no" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+          <input type="text" placeholder="Contact No." [(ngModel)]="contactNo" name="contact_no" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
         <div>
-          <input type="text" placeholder="Tel No." [(ngModel)]="tel_no" name="tel_no" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+          <input type="text" placeholder="Tel No." [(ngModel)]="telNo" name="tel_no" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
         <div>
-          <input type="email" placeholder="Email Address" [(ngModel)]="email_address" name="email_address" required
+          <input type="email" placeholder="Email Address" [(ngModel)]="email" name="email_address" required
             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400" />
         </div>
@@ -110,7 +110,7 @@
 
       <div class="grid grid-cols-4 gap-4">
         <div>
-          <select [(ngModel)]="selectedId" name="valid_id_type" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
+          <select [(ngModel)]="validIdType" name="valid_id_type" required class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 text-gray-700">
             <option value="" disabled>Select Valid ID</option>
             <option value="passport">Philippine Passport</option>
@@ -127,8 +127,8 @@
         </div>
 
         <div>
-          <input type="text" [(ngModel)]="id_no" name="valid_id_number" [placeholder]="placeholderText"
-            [disabled]="!selectedId" [pattern]="selectedPattern" #idNumberRef="ngModel" required
+          <input type="text" [(ngModel)]="validIdNumber" name="valid_id_number" [placeholder]="placeholderText"
+            [disabled]="!validIdType" [pattern]="selectedPattern" #idNumberRef="ngModel" required
             class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm
             focus:border-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-50 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed" />
           <p *ngIf="idNumberRef.invalid && idNumberRef.touched" class="text-red-500 text-sm mt-1">
